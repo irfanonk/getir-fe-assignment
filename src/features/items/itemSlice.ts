@@ -15,7 +15,7 @@ export interface Item {
 }
 
 export interface ItemState {
-  value: Item[] | null;
+  value: Item[] | [];
   status: 'idle' | 'loading' | 'failed';
 }
 
@@ -38,7 +38,7 @@ export const itemSlice = createSlice({
   initialState,
   reducers: {
     filterByCompany: (state, action: PayloadAction<string>) => {
-      state.value = state.value?.filter(item => item.manufacturer === action.payload);
+      state.value = state.value?.filter(item => item.manufacturer === action.payload) || []
     },
   },
   extraReducers: (builder) => {

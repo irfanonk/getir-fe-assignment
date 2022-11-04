@@ -6,7 +6,7 @@ import Items from "./pages/Items/Items";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Items />
     </div>
   );
