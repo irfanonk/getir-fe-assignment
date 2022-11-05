@@ -1,3 +1,4 @@
+
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../../redux/store';
 import { fetchItems } from './itemsAPI';
@@ -56,7 +57,7 @@ export const itemSlice = createSlice({
       })
       .addCase(getItems.rejected, (state) => {
         state.status = 'failed';
-      });
+      })
   },
 });
 
