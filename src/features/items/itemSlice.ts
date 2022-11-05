@@ -23,11 +23,15 @@ const initialState: ItemState = {
   value: [],
   status: 'idle',
 };
+type FetchItemsParams = {
+  limit: number,
+  page: number,
 
+}
 export const getItems = createAsyncThunk(
   'getItems',
-  async (limit: number) => {
-    const response = await fetchItems(limit);
+  async (params: FetchItemsParams) => {
+    const response = await fetchItems(params.limit, params.page);
     // The value we return becomes the `fulfilled` action payload
     return response
   }

@@ -1,17 +1,44 @@
 import { useEffect, useState } from "react";
-import { Grid, Container, Typography, Stack, Button } from "@mui/material";
-import { Item } from "../../../../features/items/itemSlice";
+import {
+  Grid,
+  CircularProgress,
+  Typography,
+  Stack,
+  Button,
+} from "@mui/material";
+import {
+  getItems,
+  Item,
+  selectItems,
+} from "../../../../features/items/itemSlice";
 import { styled } from "@mui/material/styles";
 import ProductCard from "./ProductCard";
+import { useTheme } from "@mui/material/styles";
+import Pagination from "../Pagination";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import PageLoading from "../../../../components/PageLoading";
+
 type Props = {
-  products: Item[] | [];
+  value: Item[] | [];
+  status: "idle" | "loading" | "failed";
 };
 
 const StyledButton = styled(Button)(() => ({
   textTransform: "lowercase",
 }));
 
-export default function Producst({ products }: Props) {
+export default function Products() {
+  const dispatch = useAppDispatch();
+  const items = useAppSelector(selectItems);
+
+  useEffect(() => {
+    const params = {
+      limit: 16,
+      page: 1,
+    };
+    dispatch(getItems(params));
+  }, []);
+
   return (
     <Stack spacing={2}>
       <Stack>
@@ -22,15 +49,28 @@ export default function Producst({ products }: Props) {
         <StyledButton variant="contained">shirt</StyledButton>
       </Stack>
       <Stack sx={{ background: "#fff" }} p={5} direction="row">
-        <Grid container spacing={1} justifyContent="center">
-          {products?.map((item: Item, i: number) => {
-            return (
-              <Grid key={i} item xs={12} sm={4} md={4}>
-                <ProductCard product={item} />
-              </Grid>
-            );
-          })}
+        <Grid
+          container
+          minHeight={"100vh"}
+          alignItems="center"
+          spacing={4}
+          justifyContent="center"
+        >
+          {items.status === "loading" ? (
+            <CircularProgress />
+          ) : (
+            items.value?.map((item: Item, i: number) => {
+              return (
+                <Grid key={i} item xs={12} sm={6} md={3}>
+                  <ProductCard product={item} />
+                </Grid>
+              );
+            })
+          )}
         </Grid>
+      </Stack>
+      <Stack>
+        <Pagination />
       </Stack>
     </Stack>
   );

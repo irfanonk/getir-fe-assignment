@@ -1,42 +1,63 @@
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import { Typography, Box, Button } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Button,
+  styled,
+  CardActions,
+  CardContent,
+  Card,
+} from "@mui/material";
 import Price from "../Price";
 import { Item } from "../../../../features/items/itemSlice";
+import useResponsive from "../../../../hooks/useResponsive";
 
 type Props = {
   product: Item | null;
 };
 
+const ImageBoxStyle = styled("div")(({ theme }) => ({
+  border: "1px solid #F3F0FE",
+  borderRadius: "24px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: 32,
+  [theme.breakpoints.up("md")]: {
+    width: 124,
+    height: 124,
+    padding: 0,
+  },
+}));
+const RootBoxStyle = styled("div")(({ theme }) => ({
+  background: "none",
+}));
+
 export default function MediaCard({ product }: Props) {
+  const isDesktop = useResponsive("up", "lg");
   return (
-    <Box sx={{ background: "none", width: 225 }}>
-      <Box
-        sx={{
-          border: "1px solid #F3F0FE",
-          borderRadius: "12px",
-          padding: "32px",
-        }}
-      >
-        <CardMedia
+    <RootBoxStyle>
+      <ImageBoxStyle>
+        <Box
           component="img"
           width={92}
           height={92}
-          image={`https://picsum.photos/id/10/200/300`}
-          alt="green iguana"
+          src={`https://picsum.photos/id/10/200/300`}
+          alt={product?.name}
         />
-      </Box>
+      </ImageBoxStyle>
 
       <CardContent sx={{ textAlign: "left" }}>
         <Price color="#1EA4CE" price={product?.price} />
-        <Typography variant="body2" color="text.primary">
+        <Typography
+          sx={{ fontSize: 14, fontWeight: "bold" }}
+          color="text.primary"
+        >
           {product?.name}
         </Typography>
       </CardContent>
-      <Button sx={{ width: "100%", background: "#1EA4CE" }}>Add</Button>
-    </Box>
+      <CardActions>
+        <Button sx={{ width: "100%", background: "#1EA4CE" }}>Add</Button>
+      </CardActions>
+    </RootBoxStyle>
   );
 }

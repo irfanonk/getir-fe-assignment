@@ -3,16 +3,24 @@ import { getItems, selectItems } from "../../features/items/itemSlice";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { Grid, Container } from "@mui/material";
 import Header from "../../layout/Header";
-import Producst from "./components/Products";
+import Products from "./components/Products";
+import useResponsive from "../../hooks/useResponsive";
 
 export default function Items() {
+  const isDesktop = useResponsive("up", "lg");
+  console.log("isDesktop", isDesktop);
+
   const dispatch = useAppDispatch();
   const items = useAppSelector(selectItems);
   console.log("items", items);
 
-  useEffect(() => {
-    dispatch(getItems(16));
-  }, []);
+  //   useEffect(() => {
+  //     const params = {
+  //       limit: 16,
+  //       page: 1,
+  //     };
+  //     dispatch(getItems(params));
+  //   }, []);
 
   //   if (items.status === "loading") {
   //     return <div>Loading...</div>;
@@ -22,23 +30,24 @@ export default function Items() {
       <Header />
 
       <Container sx={{ p: 10 }}>
-        {items.status === "loading" ? (
-          <div>Loading</div>
-        ) : (
-          <Grid container spacing={2}>
+        <Grid container>
+          {isDesktop && (
             <Grid xs={2}>
               {/* filters */}
               filter
             </Grid>
-            <Grid xs={8}>
-              <Producst products={items?.value} />
-            </Grid>
+          )}
+
+          <Grid xs={isDesktop ? 8 : 12}>
+            <Products />
+          </Grid>
+          {isDesktop && (
             <Grid xs={2}>
               {/* basket */}
               baseket
             </Grid>
-          </Grid>
-        )}
+          )}
+        </Grid>
       </Container>
     </div>
   );
