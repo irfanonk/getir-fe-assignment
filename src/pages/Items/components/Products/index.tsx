@@ -23,10 +23,7 @@ import {
   selectFilters,
 } from "../../../../features/filter/filterSlice";
 
-type Props = {
-  value: Item[] | [];
-  status: "idle" | "loading" | "failed";
-};
+const ITEMTYPES = ["mug", "shirt"];
 
 const StyledButton = styled(Button)(() => ({
   textTransform: "lowercase",
@@ -54,18 +51,16 @@ export default function Products() {
         <Typography>Products</Typography>
       </Stack>
       <Stack spacing={2} direction="row">
-        <StyledButton
-          onClick={() => onClickItemType("mug")}
-          variant={itemType === "mug" ? "contained" : "text"}
-        >
-          mug
-        </StyledButton>
-        <StyledButton
-          onClick={() => onClickItemType("shirt")}
-          variant={itemType === "shirt" ? "contained" : "text"}
-        >
-          shirt
-        </StyledButton>
+        {ITEMTYPES.map((type: string) => {
+          return (
+            <StyledButton
+              onClick={() => onClickItemType(type)}
+              variant={itemType === type ? "contained" : "text"}
+            >
+              {type}
+            </StyledButton>
+          );
+        })}
       </Stack>
       <Stack sx={{ background: "#fff" }} p={5} direction="row">
         <Grid

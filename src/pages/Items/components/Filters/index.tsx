@@ -7,10 +7,14 @@ import {
   selectComponies,
 } from "../../../../features/companies/companiesSlice";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
-import { filterByBrand, sort } from "../../../../features/filter/filterSlice";
+import {
+  filterByBrand,
+  filterByTag,
+  sort,
+} from "../../../../features/filter/filterSlice";
 import { getItems } from "../../../../features/items/itemSlice";
 
-const sorting = [
+const SORTING = [
   {
     name: "Price low to high",
     value: "",
@@ -28,6 +32,52 @@ const sorting = [
     value: "",
   },
 ];
+const TAGS = [
+  {
+    name: "Beach",
+    value: "",
+  },
+  {
+    name: "Ocean",
+    value: "",
+  },
+  {
+    name: "Water",
+    value: "",
+  },
+  {
+    name: "Animal",
+    value: "Bear",
+  },
+  {
+    name: "Road",
+    value: "Bear",
+  },
+  {
+    name: "Rocks",
+    value: "Bear",
+  },
+  {
+    name: "Sunset",
+    value: "Bear",
+  },
+  {
+    name: "Old",
+    value: "Bear",
+  },
+  {
+    name: "Car",
+    value: "Bear",
+  },
+  {
+    name: "Person",
+    value: "Bear",
+  },
+  {
+    name: "Hills",
+    value: "Bear",
+  },
+];
 
 export default function Filter() {
   const dispatch = useAppDispatch();
@@ -39,14 +89,16 @@ export default function Filter() {
   }, []);
 
   const onClickSort = (sorting: string) => {
-    console.log("sorting", sorting);
     dispatch(sort(sorting));
     dispatch(getItems());
   };
   const onClickFilterBrand = (brand: string) => {
-    console.log("brand", brand);
     dispatch(filterByBrand(brand));
     dispatch(getItems());
+  };
+  const onClickFilterTag = (tag: string) => {
+    dispatch(filterByTag(tag));
+    //   dispatch(getItems());
   };
 
   return (
@@ -54,7 +106,7 @@ export default function Filter() {
       <FilterCard
         onClickFilter={onClickSort}
         title="Sorting"
-        filterData={sorting}
+        filterData={SORTING}
       />
       <FilterCard
         onClickFilter={onClickFilterBrand}
@@ -62,6 +114,13 @@ export default function Filter() {
         search={true}
         searchText="Search brand"
         filterData={companies.value}
+      />
+      <FilterCard
+        onClickFilter={onClickFilterTag}
+        title="Tags"
+        search={true}
+        searchText="Search tag"
+        filterData={TAGS}
       />
     </Stack>
   );
