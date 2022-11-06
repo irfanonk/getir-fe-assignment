@@ -25,15 +25,19 @@ const ImageBoxStyle = styled("div")(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
     width: 124,
     height: 124,
-    padding: 0,
+    padding: "16px 0 16px 0",
   },
 }));
 const RootBoxStyle = styled("div")(({ theme }) => ({
   background: "none",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  maxHeight: 227,
 }));
 
 export default function MediaCard({ product }: Props) {
-  const isDesktop = useResponsive("up", "lg");
   return (
     <RootBoxStyle>
       <ImageBoxStyle>
@@ -55,9 +59,7 @@ export default function MediaCard({ product }: Props) {
           {product?.name}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button sx={{ width: "100%", background: "#1EA4CE" }}>Add</Button>
-      </CardActions>
+      <Button sx={{ width: "100%", background: "#1EA4CE" }}>Add</Button>
     </RootBoxStyle>
   );
 }
