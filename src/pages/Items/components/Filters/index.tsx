@@ -89,7 +89,6 @@ const RootBox = styled(Box)(() => ({
 export default function Filter() {
   const dispatch = useAppDispatch();
   const companies = useAppSelector(selectComponies);
-  console.log("companies", companies);
 
   useEffect(() => {
     dispatch(getCompanies());

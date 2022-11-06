@@ -9,10 +9,9 @@ import {
 } from "@mui/material";
 import Price from "../Price";
 import { Item } from "../../../../features/items/itemSlice";
-import useResponsive from "../../../../hooks/useResponsive";
 
 type Props = {
-  product: Item | null;
+  item: Item;
   onAddToBasket: (item: Item) => void;
 };
 
@@ -38,7 +37,7 @@ const RootBoxStyle = styled("div")(({ theme }) => ({
   maxHeight: 227,
 }));
 
-export default function MediaCard({ product, onAddToBasket }: Props) {
+export default function ItemCard({ item, onAddToBasket }: Props) {
   return (
     <RootBoxStyle>
       <ImageBoxStyle>
@@ -47,21 +46,21 @@ export default function MediaCard({ product, onAddToBasket }: Props) {
           width={92}
           height={92}
           src={`https://picsum.photos/id/10/200/300`}
-          alt={product?.name}
+          alt={item?.name}
         />
       </ImageBoxStyle>
 
       <CardContent sx={{ textAlign: "left" }}>
-        <Price color="#1EA4CE" price={product?.price} />
+        <Price color="#1EA4CE" price={item?.price} />
         <Typography
           sx={{ fontSize: 14, fontWeight: "bold" }}
           color="text.primary"
         >
-          {product?.name}
+          {item?.name}
         </Typography>
       </CardContent>
       <Button
-        onClick={() => onAddToBasket(product)}
+        onClick={() => onAddToBasket(item)}
         sx={{ width: "100%", background: "#1EA4CE" }}
       >
         Add

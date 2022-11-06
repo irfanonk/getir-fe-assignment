@@ -3,7 +3,7 @@ import { getItems, selectItems } from "../../features/items/itemSlice";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { Grid, Box, styled } from "@mui/material";
 import Header from "../../layout/Header";
-import Products from "./components/Products";
+import Items from "./components/Items";
 import useResponsive from "../../hooks/useResponsive";
 import Filters from "./components/Filters";
 import Basket from "./components/Basket";
@@ -13,7 +13,7 @@ const RootContainerBox = styled(Box)(({}) => ({
   justifyContent: "center",
   padding: 80,
 }));
-export default function Items() {
+export default function ItemsPage() {
   const isDesktop = useResponsive("up", "lg");
 
   return (
@@ -30,7 +30,7 @@ export default function Items() {
           )}
 
           <Grid item xs={isDesktop ? 6 : 12}>
-            <Products />
+            <Items />
           </Grid>
           {isDesktop && (
             <Grid item>

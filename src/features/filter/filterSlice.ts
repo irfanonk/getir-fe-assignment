@@ -36,13 +36,10 @@ export const filterSlice = createSlice({
       state.tag = action.payload;
     },
     sort: (state, action: PayloadAction<string>) => {
-      console.log('sort', action);
 
       state.sorting = action.payload;
     },
     paginate: (state, action: PayloadAction<number>) => {
-      console.log('paginate', action);
-
       state.page = action.payload;
     },
   },

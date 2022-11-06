@@ -31,8 +31,13 @@ export default function CheckboxList({
   const [checked, setChecked] = React.useState<string>("");
 
   const handleToggle = (value: string) => () => {
-    setChecked(value);
-    onClickFilter(value);
+    if (value === checked) {
+      setChecked("");
+      onClickFilter("");
+    } else {
+      setChecked(value);
+      onClickFilter(value);
+    }
   };
 
   return (

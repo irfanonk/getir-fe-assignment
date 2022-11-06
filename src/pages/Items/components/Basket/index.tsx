@@ -21,23 +21,7 @@ import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { NumberBoxStyle } from "../Commons/NumberBox";
 import Price from "../Price";
 import { Item } from "../../../../features/items/itemSlice";
-const BASKET = [
-  {
-    id: 1,
-    name: "Incredible Ocean Shirt",
-    price: 10.99,
-  },
-  {
-    id: 2,
-    name: "Rustic Beach Mug",
-    price: 20.99,
-  },
-  {
-    id: 3,
-    name: "Handmade Fog Shirt",
-    price: 9.99,
-  },
-];
+
 const RootBoxStyle = styled(Box)(() => ({
   border: "5px solid #1EA4CE",
   padding: "25px",
@@ -63,14 +47,11 @@ export default function Basket() {
   const dispatch = useAppDispatch();
   const items = useAppSelector(selectItems);
   const basket = items.basket;
-  console.log("basket", basket);
 
   const onAddToBasket = (item: Item) => {
-    console.log("item", item);
     dispatch(addToBasket(item));
   };
   const onRemoveFromBasket = (item: Item) => {
-    console.log("item", item);
     dispatch(removeFromBasket(item));
   };
 

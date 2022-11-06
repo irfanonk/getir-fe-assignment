@@ -14,7 +14,7 @@ import {
 } from "../../../../features/items/itemSlice";
 
 import { styled } from "@mui/material/styles";
-import ProductCard from "./ProductCard";
+import ItemCard from "./ItemCard";
 import { useTheme } from "@mui/material/styles";
 import Pagination from "../Pagination";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
@@ -30,11 +30,10 @@ const StyledButton = styled(Button)(() => ({
   textTransform: "lowercase",
 }));
 
-export default function Products() {
+export default function Items() {
   const dispatch = useAppDispatch();
   const items = useAppSelector(selectItems);
   const filters = useAppSelector(selectFilters);
-  console.log("filters", filters);
   const itemType = filters.itemType;
 
   useEffect(() => {
@@ -82,7 +81,7 @@ export default function Products() {
             items.value?.map((item: Item, i: number) => {
               return (
                 <Grid key={i} item xs={12} sm={6} md={3}>
-                  <ProductCard onAddToBasket={onAddToBasket} product={item} />
+                  <ItemCard onAddToBasket={onAddToBasket} item={item} />
                 </Grid>
               );
             })

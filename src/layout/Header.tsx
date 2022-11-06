@@ -11,10 +11,15 @@ import {
 } from "@mui/material";
 
 import Price from "../pages/Items/components/Price";
+import { useAppSelector } from "../redux/hooks";
+import { selectItems } from "../features/items/itemSlice";
 
 const HEADER_HEIGHT = 76;
 
 export default function Header() {
+  const items = useAppSelector(selectItems);
+  const basket = items.basket;
+
   return (
     <Box sx={{ flexGrow: 1, textAlign: "center" }}>
       <AppBar
@@ -40,7 +45,7 @@ export default function Header() {
             }}
           >
             <img src="/assets/icons/basket.png" alt="basket" />
-            <Price price={13.99} />
+            <Price price={basket.totolPrice} />
           </Stack>
         </Toolbar>
       </AppBar>
