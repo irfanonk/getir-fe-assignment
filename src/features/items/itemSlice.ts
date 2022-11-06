@@ -24,28 +24,23 @@ const initialState: ItemState = {
   value: [],
   status: 'idle',
 };
-type FetchItemsParams = {
-  limit: number,
-  page: number,
 
-}
 export const getItems = createAsyncThunk(
   'getItems',
-  async (params: FetchItemsParams) => {
-    const response = await fetchItems(params.limit, params.page);
-    // The value we return becomes the `fulfilled` action payload
+  async (args, { getState }) => {
+    const state = getState() as RootState
+    const filters = state.filters
+
+    const response = await fetchItems(filters);
     return response
   }
 );
 
+
 export const itemSlice = createSlice({
   name: 'items',
   initialState,
-  reducers: {
-    filterByCompany: (state, action: PayloadAction<string>) => {
-      state.value = state.value?.filter(item => item.manufacturer === action.payload) || []
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getItems.pending, (state) => {

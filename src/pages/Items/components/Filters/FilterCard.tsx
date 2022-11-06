@@ -13,6 +13,7 @@ type Props = {
   title?: string;
   search?: boolean;
   searchText?: string;
+  onClickFilter: (value: string) => void;
 };
 
 type FilterData = {
@@ -25,11 +26,13 @@ export default function CheckboxList({
   title,
   search,
   searchText,
+  onClickFilter,
 }: Props) {
   const [checked, setChecked] = React.useState<string>("");
 
   const handleToggle = (value: string) => () => {
     setChecked(value);
+    onClickFilter(value);
   };
 
   return (

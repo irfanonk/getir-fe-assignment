@@ -11,12 +11,17 @@ import {
   Item,
   selectItems,
 } from "../../../../features/items/itemSlice";
+
 import { styled } from "@mui/material/styles";
 import ProductCard from "./ProductCard";
 import { useTheme } from "@mui/material/styles";
 import Pagination from "../Pagination";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import PageLoading from "../../../../components/PageLoading";
+import {
+  filterByItemType,
+  selectFilters,
+} from "../../../../features/filter/filterSlice";
 
 type Props = {
   value: Item[] | [];
@@ -30,14 +35,18 @@ const StyledButton = styled(Button)(() => ({
 export default function Products() {
   const dispatch = useAppDispatch();
   const items = useAppSelector(selectItems);
+  const filters = useAppSelector(selectFilters);
+  console.log("filters", filters);
+  const itemType = filters.itemType;
 
   useEffect(() => {
-    const params = {
-      limit: 16,
-      page: 1,
-    };
-    dispatch(getItems(params));
+    dispatch(getItems());
   }, []);
+
+  const onClickItemType = (_itemType: string) => {
+    dispatch(filterByItemType(_itemType));
+    dispatch(getItems());
+  };
 
   return (
     <Stack spacing={2}>
@@ -45,8 +54,18 @@ export default function Products() {
         <Typography>Products</Typography>
       </Stack>
       <Stack spacing={2} direction="row">
-        <StyledButton variant="text">mug</StyledButton>
-        <StyledButton variant="contained">shirt</StyledButton>
+        <StyledButton
+          onClick={() => onClickItemType("mug")}
+          variant={itemType === "mug" ? "contained" : "text"}
+        >
+          mug
+        </StyledButton>
+        <StyledButton
+          onClick={() => onClickItemType("shirt")}
+          variant={itemType === "shirt" ? "contained" : "text"}
+        >
+          shirt
+        </StyledButton>
       </Stack>
       <Stack sx={{ background: "#fff" }} p={5} direction="row">
         <Grid

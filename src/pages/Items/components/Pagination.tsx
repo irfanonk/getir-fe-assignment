@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Typography, Box, Button, styled, Stack, Grid } from "@mui/material";
 
 import { getItems } from "../../../features/items/itemSlice";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { selectFilters, paginate } from "../../../features/filter/filterSlice";
 
 const NumberBoxStyle = styled("div")(({ theme }) => ({
   display: "flex",
@@ -17,17 +18,16 @@ const StyledStack = styled(Stack)(({ theme }) => ({
 }));
 
 export default function Pagination() {
-  const [selectedPage, setSelectedPage] = useState<number>(1);
+  const filters = useAppSelector(selectFilters);
+  const page = filters.page;
+  console.log("page", page, filters);
+
   const dispatch = useAppDispatch();
 
   const onClickPage = (pageNumber: number) => {
     console.log("pageNumber", pageNumber);
-    const params = {
-      limit: 16,
-      page: pageNumber,
-    };
-    setSelectedPage(pageNumber);
-    dispatch(getItems(params));
+    dispatch(paginate(pageNumber));
+    dispatch(getItems());
   };
   return (
     <Grid container pl={3} pr={3} spacing={1}>
@@ -43,7 +43,7 @@ export default function Pagination() {
             <NumberBoxStyle
               onClick={() => onClickPage(i + 1)}
               sx={{
-                background: i + 1 === selectedPage ? "#1EA4CE" : "",
+                background: i + 1 === page ? "#1EA4CE" : "",
               }}
               key={i}
             >
