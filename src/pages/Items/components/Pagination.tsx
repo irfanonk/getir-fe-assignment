@@ -3,15 +3,24 @@ import { Typography, Box, Button, styled, Stack, Grid } from "@mui/material";
 
 import { getItems, selectItems } from "../../../features/items/itemSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { selectFilters, paginate } from "../../../features/filter/filterSlice";
+import {
+  selectFilters,
+  paginate,
+  FilterState,
+} from "../../../features/filter/filterSlice";
 import { NumberBoxStyle } from "./Commons/NumberBox";
 
 const StyledStack = styled(Stack)(({ theme }) => ({
   cursor: "pointer",
 }));
-
+const DotBoxStyle = styled(Stack)(({ theme }) => ({
+  width: 3,
+  height: 3,
+  background: "#000",
+  borderRadius: "100%",
+}));
 export default function Pagination() {
-  const filters = useAppSelector(selectFilters);
+  const filters = useAppSelector(selectFilters) as FilterState;
   const page = filters.page;
   const items = useAppSelector(selectItems);
   const totalCount = items.totalCount;
@@ -20,8 +29,9 @@ export default function Pagination() {
   console.log("page", page, totalCount, totalPage);
 
   const [pageNumbers, setPageNumbers] = useState<number[]>(
-    Array.from(Array(9).keys()).slice(1)
+    Array.from(Array(totalPage + 1).keys()).slice(1)
   );
+  console.log("pageNumbers", pageNumbers);
 
   const dispatch = useAppDispatch();
 
@@ -63,7 +73,33 @@ export default function Pagination() {
       </Grid>
       <Grid item xs={8}>
         <Stack direction="row" spacing={2}>
-          {pageNumbers.map((item) => (
+          {pageNumbers.slice(0, 4).map((item) => (
+            <NumberBoxStyle
+              onClick={() => onClickPage(item)}
+              sx={{
+                background: item === page ? "#1EA4CE" : "",
+                padding: "10px 8px 8px 10px",
+              }}
+              key={item}
+            >
+              {item}
+            </NumberBoxStyle>
+          ))}
+          <Stack direction="row" alignItems="center" spacing={2}>
+            {page > 4 && page < totalPage - 4 ? (
+              <NumberBoxStyle
+                sx={{
+                  background: "#1EA4CE",
+                  padding: "10px 8px 8px 10px",
+                }}
+              >
+                {page}
+              </NumberBoxStyle>
+            ) : (
+              [1, 2, 3].map((x) => <DotBoxStyle key={x} />)
+            )}
+          </Stack>
+          {pageNumbers.slice(-4).map((item) => (
             <NumberBoxStyle
               onClick={() => onClickPage(item)}
               sx={{

@@ -61,6 +61,7 @@ export default function Items() {
         {ITEMTYPES.map((type: string) => {
           return (
             <StyledButton
+              key={type}
               onClick={() => onClickItemType(type)}
               variant={itemType === type ? "contained" : "text"}
             >
