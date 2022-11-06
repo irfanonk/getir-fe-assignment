@@ -29,7 +29,7 @@ export default function Pagination() {
   console.log("page", page, totalCount, totalPage);
 
   const [pageNumbers, setPageNumbers] = useState<number[]>(
-    Array.from(Array(totalPage + 1).keys()).slice(1)
+    Array.from(Array(9).keys()).slice(1)
   );
   console.log("pageNumbers", pageNumbers);
 
@@ -73,7 +73,7 @@ export default function Pagination() {
       </Grid>
       <Grid item xs={8}>
         <Stack direction="row" spacing={2}>
-          {pageNumbers.slice(0, 4).map((item) => (
+          {pageNumbers.map((item) => (
             <NumberBoxStyle
               onClick={() => onClickPage(item)}
               sx={{
@@ -85,7 +85,7 @@ export default function Pagination() {
               {item}
             </NumberBoxStyle>
           ))}
-          <Stack direction="row" alignItems="center" spacing={2}>
+          {/* <Stack direction="row" alignItems="center" spacing={2}>
             {page > 4 && page < totalPage - 4 ? (
               <NumberBoxStyle
                 sx={{
@@ -110,7 +110,7 @@ export default function Pagination() {
             >
               {item}
             </NumberBoxStyle>
-          ))}
+          ))} */}
         </Stack>
       </Grid>
       <Grid sx={{ display: "flex", justifyContent: "flex-end" }} item xs>
