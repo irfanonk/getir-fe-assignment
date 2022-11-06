@@ -18,7 +18,7 @@ type Props = {
 
 type FilterData = {
   name: string;
-  value: string | number;
+  slug: string;
 };
 
 export default function CheckboxList({
@@ -57,20 +57,20 @@ export default function CheckboxList({
           </Stack>
         )}
         {filterData?.map((data) => {
-          const { name } = data;
+          const { name, slug } = data;
           const labelId = `checkbox-list-label-${name}`;
 
           return (
             <ListItem key={name} disablePadding>
               <ListItemButton
                 role={undefined}
-                onClick={handleToggle(name)}
+                onClick={handleToggle(slug)}
                 dense
               >
                 <ListItemIcon>
                   <Checkbox
                     edge="start"
-                    checked={checked === name}
+                    checked={checked === slug}
                     tabIndex={-1}
                     disableRipple
                     inputProps={{ "aria-labelledby": labelId }}

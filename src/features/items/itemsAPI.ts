@@ -25,17 +25,17 @@ export const fetchItems = async (filters: FilterState) => {
 const getSortingOrder = (sorting: string) => {
   let sortParam = ""
   switch (sorting) {
-    case "Price low to high":
+    case "plh":
       sortParam = "&_sort=price&_order=asc"
       break;
 
-    case "Price high to low":
+    case "phl":
       sortParam = "&_sort=price&_order=desc"
       break;
-    case "New to old":
+    case "nto":
       sortParam = "&_sort=added&_order=desc"
       break;
-    case "Old to new":
+    case "otn":
       sortParam = "&_sort=added&_order=asc"
       break;
 

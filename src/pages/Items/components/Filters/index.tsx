@@ -17,65 +17,45 @@ import { getItems } from "../../../../features/items/itemSlice";
 const SORTING = [
   {
     name: "Price low to high",
-    value: "",
+    slug: "plh",
   },
   {
     name: "Price high to low",
-    value: "",
+    slug: "phl",
   },
   {
     name: "New to old",
-    value: "",
+    slug: "nto",
   },
   {
     name: "Old to new",
-    value: "",
+    slug: "otn",
   },
 ];
 const TAGS = [
   {
     name: "Beach",
-    value: "",
+    slug: "Beach",
   },
   {
     name: "Ocean",
-    value: "",
+    slug: "Ocean",
   },
   {
     name: "Water",
-    value: "",
+    slug: "Water",
   },
   {
     name: "Animal",
-    value: "Bear",
+    slug: "Animal",
   },
   {
     name: "Road",
-    value: "Bear",
+    slug: "Road",
   },
   {
     name: "Rocks",
-    value: "Bear",
-  },
-  {
-    name: "Sunset",
-    value: "Bear",
-  },
-  {
-    name: "Old",
-    value: "Bear",
-  },
-  {
-    name: "Car",
-    value: "Bear",
-  },
-  {
-    name: "Person",
-    value: "Bear",
-  },
-  {
-    name: "Hills",
-    value: "Bear",
+    slug: "Rocks",
   },
 ];
 
