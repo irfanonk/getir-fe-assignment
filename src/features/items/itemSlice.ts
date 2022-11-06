@@ -1,5 +1,6 @@
 
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import Items from '../../pages/Items/Items';
 import { RootState, AppThunk } from '../../redux/store';
 import { fetchItems } from './itemsAPI';
 
@@ -17,13 +18,29 @@ export interface Item {
 
 export interface ItemState {
   value: Item[] | [];
+  basket: Basket;
   status: 'idle' | 'loading' | 'failed';
 }
 
+export interface Basket {
+  items: BasketItem[] | [],
+  totolPrice: number,
+}
+interface BasketItem extends Item {
+  quantity: number;
+}
+
+
 const initialState: ItemState = {
   value: [],
+  basket: {
+    items: [],
+    totolPrice: 0
+  },
   status: 'idle',
 };
+
+
 
 export const getItems = createAsyncThunk(
   'getItems',
@@ -40,7 +57,41 @@ export const getItems = createAsyncThunk(
 export const itemSlice = createSlice({
   name: 'items',
   initialState,
-  reducers: {},
+  reducers: {
+    addToBasket: (state, action: PayloadAction<Item>) => {
+      const currentBasket = state.basket
+      const items = currentBasket.items
+      const item = items?.find(
+        (basketItem) => basketItem.name === action.payload.name,
+      ) as BasketItem;
+      if (item) {
+        item.quantity += 1
+
+      } else {
+        items?.push({ ...action.payload, quantity: 1 })
+      }
+      currentBasket.totolPrice += action.payload.price
+      currentBasket.totolPrice = +currentBasket.totolPrice.toFixed(2)
+      state.basket = currentBasket;
+    },
+    removeFromBasket: (state, action: PayloadAction<Item>) => {
+      const currentBasket = state.basket
+      const items = currentBasket.items
+      const item = items?.find(
+        (basketItem) => basketItem.name === action.payload.name
+      ) as BasketItem
+      if (item?.quantity === 1) {
+        const filteredItems = items.filter(item => item.name !== action.payload.name)
+        currentBasket.items = filteredItems
+
+      } else {
+        item.quantity -= 1
+      }
+      currentBasket.totolPrice -= action.payload.price
+      currentBasket.totolPrice = +currentBasket.totolPrice.toFixed(2)
+      state.basket = currentBasket;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getItems.pending, (state) => {
@@ -56,7 +107,7 @@ export const itemSlice = createSlice({
   },
 });
 
-// export const { increment, decrement, incrementByAmount } = itemSlice.actions;
+export const { addToBasket, removeFromBasket } = itemSlice.actions;
 
 export const selectItems = (state: RootState) => state.items;
 

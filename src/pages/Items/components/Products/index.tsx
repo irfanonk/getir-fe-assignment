@@ -7,6 +7,7 @@ import {
   Button,
 } from "@mui/material";
 import {
+  addToBasket,
   getItems,
   Item,
   selectItems,
@@ -45,6 +46,11 @@ export default function Products() {
     dispatch(getItems());
   };
 
+  const onAddToBasket = (item: Item) => {
+    console.log("item", item);
+    dispatch(addToBasket(item));
+  };
+
   return (
     <Stack spacing={2}>
       <Stack>
@@ -76,7 +82,7 @@ export default function Products() {
             items.value?.map((item: Item, i: number) => {
               return (
                 <Grid key={i} item xs={12} sm={6} md={3}>
-                  <ProductCard product={item} />
+                  <ProductCard onAddToBasket={onAddToBasket} product={item} />
                 </Grid>
               );
             })

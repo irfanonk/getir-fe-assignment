@@ -36,7 +36,7 @@ export default function CheckboxList({
   };
 
   return (
-    <>
+    <div>
       <Typography sx={{ mb: 1 }}>{title}</Typography>
       <List
         sx={{
@@ -77,6 +77,6 @@ export default function CheckboxList({
           );
         })}
       </List>
-    </>
+    </div>
   );
 }

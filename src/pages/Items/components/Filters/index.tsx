@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, styled } from "@mui/material";
 import FilterCard from "./FilterCard";
 import {
   getCompanies,
@@ -79,6 +79,13 @@ const TAGS = [
   },
 ];
 
+const RootBox = styled(Box)(() => ({
+  minWidth: 296,
+  display: "flex",
+  flexDirection: "column",
+  rowGap: 25,
+}));
+
 export default function Filter() {
   const dispatch = useAppDispatch();
   const companies = useAppSelector(selectComponies);
@@ -102,7 +109,7 @@ export default function Filter() {
   };
 
   return (
-    <Stack spacing={2}>
+    <RootBox>
       <FilterCard
         onClickFilter={onClickSort}
         title="Sorting"
@@ -122,6 +129,6 @@ export default function Filter() {
         searchText="Search tag"
         filterData={TAGS}
       />
-    </Stack>
+    </RootBox>
   );
 }

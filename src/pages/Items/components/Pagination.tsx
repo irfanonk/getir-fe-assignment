@@ -4,15 +4,8 @@ import { Typography, Box, Button, styled, Stack, Grid } from "@mui/material";
 import { getItems } from "../../../features/items/itemSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { selectFilters, paginate } from "../../../features/filter/filterSlice";
+import { NumberBoxStyle } from "./Commons/NumberBox";
 
-const NumberBoxStyle = styled("div")(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  width: "100%",
-  padding: "10px 8px 8px 10px",
-  cursor: "pointer",
-}));
 const StyledStack = styled(Stack)(({ theme }) => ({
   cursor: "pointer",
 }));
@@ -44,6 +37,7 @@ export default function Pagination() {
               onClick={() => onClickPage(i + 1)}
               sx={{
                 background: i + 1 === page ? "#1EA4CE" : "",
+                padding: "10px 8px 8px 10px",
               }}
               key={i}
             >

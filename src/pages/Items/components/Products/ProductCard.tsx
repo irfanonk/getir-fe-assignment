@@ -13,6 +13,7 @@ import useResponsive from "../../../../hooks/useResponsive";
 
 type Props = {
   product: Item | null;
+  onAddToBasket: (item: Item) => void;
 };
 
 const ImageBoxStyle = styled("div")(({ theme }) => ({
@@ -37,7 +38,7 @@ const RootBoxStyle = styled("div")(({ theme }) => ({
   maxHeight: 227,
 }));
 
-export default function MediaCard({ product }: Props) {
+export default function MediaCard({ product, onAddToBasket }: Props) {
   return (
     <RootBoxStyle>
       <ImageBoxStyle>
@@ -59,7 +60,12 @@ export default function MediaCard({ product }: Props) {
           {product?.name}
         </Typography>
       </CardContent>
-      <Button sx={{ width: "100%", background: "#1EA4CE" }}>Add</Button>
+      <Button
+        onClick={() => onAddToBasket(product)}
+        sx={{ width: "100%", background: "#1EA4CE" }}
+      >
+        Add
+      </Button>
     </RootBoxStyle>
   );
 }
