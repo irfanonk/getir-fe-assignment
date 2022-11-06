@@ -10,6 +10,7 @@ import {
   addToBasket,
   getItems,
   Item,
+  ItemState,
   selectItems,
 } from "../../../../features/items/itemSlice";
 
@@ -21,6 +22,7 @@ import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import PageLoading from "../../../../components/PageLoading";
 import {
   filterByItemType,
+  FilterState,
   selectFilters,
 } from "../../../../features/filter/filterSlice";
 
@@ -32,8 +34,8 @@ const StyledButton = styled(Button)(() => ({
 
 export default function Items() {
   const dispatch = useAppDispatch();
-  const items = useAppSelector(selectItems);
-  const filters = useAppSelector(selectFilters);
+  const items = useAppSelector(selectItems) as ItemState;
+  const filters = useAppSelector(selectFilters) as FilterState;
   const itemType = filters.itemType;
 
   useEffect(() => {
