@@ -60,7 +60,7 @@ export default function Pagination() {
 
   return (
     <Grid container pl={3} pr={3} spacing={1}>
-      <Grid item xs>
+      <Grid sx={{ display: "flex", justifyContent: "flex-start" }} item xs>
         <StyledStack
           onClick={onClickPrevPage}
           direction="row"

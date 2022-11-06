@@ -52,12 +52,7 @@ export default function ItemCard({ item, onAddToBasket }: Props) {
 
       <CardContent sx={{ textAlign: "left" }}>
         <Price color="#1EA4CE" price={item?.price} />
-        <Typography
-          sx={{ fontSize: 14, fontWeight: "bold" }}
-          color="text.primary"
-        >
-          {item?.name}
-        </Typography>
+        <Typography color="text.primary">{item?.name}</Typography>
       </CardContent>
       <Button
         onClick={() => onAddToBasket(item)}
