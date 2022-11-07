@@ -22,7 +22,11 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: "#1EA4CE", // very red
+      main: "#1EA4CE",
+    },
+    text: {
+      primary: "#525252",
+      secondary: "#525252",
     },
   },
   typography: {

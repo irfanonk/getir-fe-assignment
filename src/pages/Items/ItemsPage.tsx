@@ -12,7 +12,7 @@ import { Stack } from "@mui/system";
 const RootContainerBox = styled(Box)(({}) => ({
   display: "flex",
   justifyContent: "center",
-  padding: 80,
+  padding: "80px 0 80px 0",
 }));
 export default function ItemsPage() {
   const isDesktop = useResponsive("up", "lg");
@@ -33,7 +33,7 @@ export default function ItemsPage() {
             </Grid>
           )}
 
-          <Grid item xs={isDesktop ? 6 : 12}>
+          <Grid item xs={isDesktop ? 4 : 12}>
             {!isDesktop && (
               <Stack direction="row" justifyContent="center" spacing={2} mb={5}>
                 <Button

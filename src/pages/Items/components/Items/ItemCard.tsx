@@ -32,9 +32,7 @@ const RootBoxStyle = styled("div")(({ theme }) => ({
   background: "none",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  maxHeight: 227,
+  height: 227,
 }));
 
 export default function ItemCard({ item, onAddToBasket }: Props) {
@@ -50,17 +48,19 @@ export default function ItemCard({ item, onAddToBasket }: Props) {
         />
       </ImageBoxStyle>
 
-      <CardContent sx={{ textAlign: "left" }}>
+      <CardContent sx={{ textAlign: "left", minHeight: "70px" }}>
         <Price color="#1EA4CE" price={item?.price} />
-        <Typography fontWeight={600}>{item?.name}</Typography>
+        <Typography fontWeight={500}>{item?.name}</Typography>
       </CardContent>
-      <Button
-        variant="contained"
-        onClick={() => onAddToBasket(item)}
-        sx={{ width: "100%" }}
-      >
-        Add
-      </Button>
+      <CardActions>
+        <Button
+          sx={{ width: "100%" }}
+          variant="contained"
+          onClick={() => onAddToBasket(item)}
+        >
+          Add
+        </Button>
+      </CardActions>
     </RootBoxStyle>
   );
 }

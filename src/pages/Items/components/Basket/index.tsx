@@ -101,12 +101,7 @@ export default function Basket() {
                   primary={item.name}
                   secondary={
                     <>
-                      <Typography
-                        sx={{ display: "inline" }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      >
+                      <Typography sx={{ display: "inline" }} component="span">
                         <Price price={item.price} color="#1EA4CE" />
                       </Typography>
                     </>

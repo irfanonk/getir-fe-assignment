@@ -7,6 +7,8 @@ import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
 import { Typography, TextField, Stack } from "@mui/material";
 import { Company } from "../../../../features/companies/companiesSlice";
+import CircleChecked from "@mui/icons-material/CheckCircleOutline";
+import CircleUnchecked from "@mui/icons-material/RadioButtonUnchecked";
 
 type Props = {
   filterData?: FilterData[] | Company[];
@@ -68,15 +70,29 @@ export default function CheckboxList({
                 dense
               >
                 <ListItemIcon>
-                  <Checkbox
-                    edge="start"
-                    checked={checked === slug}
-                    tabIndex={-1}
-                    disableRipple
-                    inputProps={{ "aria-labelledby": labelId }}
-                  />
+                  {title === "Sorting" ? (
+                    <Checkbox
+                      icon={<CircleUnchecked />}
+                      checkedIcon={<CircleChecked />}
+                      edge="start"
+                      checked={checked === slug}
+                      tabIndex={-1}
+                      disableRipple
+                      inputProps={{
+                        "aria-labelledby": labelId,
+                      }}
+                    />
+                  ) : (
+                    <Checkbox
+                      edge="start"
+                      checked={checked === slug}
+                      tabIndex={-1}
+                      disableRipple
+                      inputProps={{ "aria-labelledby": labelId }}
+                    />
+                  )}
                 </ListItemIcon>
-                <ListItemText id={labelId} primary={`${name}`} />
+                <ListItemText id={labelId} primary={name} />
               </ListItemButton>
             </ListItem>
           );
