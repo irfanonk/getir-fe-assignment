@@ -46,7 +46,11 @@ export default function Items() {
   }, []);
 
   const onClickItemType = (_itemType: string) => {
-    dispatch(filterByItemType(_itemType));
+    if (_itemType === itemType) {
+      dispatch(filterByItemType(""));
+    } else {
+      dispatch(filterByItemType(_itemType));
+    }
     dispatch(getItems());
   };
 
