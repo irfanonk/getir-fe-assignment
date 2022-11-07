@@ -5,7 +5,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
-import { Typography, TextField, Stack } from "@mui/material";
+import { Typography, TextField, Stack, Box } from "@mui/material";
 import { Company } from "../../../../features/companies/companiesSlice";
 import CircleChecked from "@mui/icons-material/CheckCircleOutline";
 import CircleUnchecked from "@mui/icons-material/RadioButtonUnchecked";
@@ -53,13 +53,13 @@ export default function CheckboxList({
   };
 
   return (
-    <div>
+    <Box>
       <Typography sx={{ fontSize: "13px", mb: 1 }}>{title}</Typography>
       <List
         sx={{
           width: "100%",
           bgcolor: "background.paper",
-          maxHeight: 274,
+          height: 274,
           overflow: "auto",
         }}
       >
@@ -112,6 +112,6 @@ export default function CheckboxList({
           );
         })}
       </List>
-    </div>
+    </Box>
   );
 }
