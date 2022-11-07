@@ -45,7 +45,7 @@ export default function Header() {
             }}
           >
             <img src="/assets/icons/basket.png" alt="basket" />
-            <Price price={basket.totolPrice} />
+            <Price color="#fff" price={basket.totolPrice} />
           </Stack>
         </Toolbar>
       </AppBar>

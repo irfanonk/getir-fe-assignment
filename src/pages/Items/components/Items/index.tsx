@@ -25,6 +25,7 @@ import {
   FilterState,
   selectFilters,
 } from "../../../../features/filter/filterSlice";
+import useResponsive from "../../../../hooks/useResponsive";
 
 const ITEMTYPES = ["mug", "shirt"];
 
@@ -33,6 +34,8 @@ const StyledButton = styled(Button)(() => ({
 }));
 
 export default function Items() {
+  const isDesktop = useResponsive("up", "lg");
+
   const dispatch = useAppDispatch();
   const items = useAppSelector(selectItems) as ItemState;
   const filters = useAppSelector(selectFilters) as FilterState;
@@ -70,6 +73,11 @@ export default function Items() {
           );
         })}
       </Stack>
+      {!isDesktop && (
+        <Stack>
+          <Pagination />
+        </Stack>
+      )}
       <Stack sx={{ background: "#fff" }} p={5} direction="row">
         <Grid
           container

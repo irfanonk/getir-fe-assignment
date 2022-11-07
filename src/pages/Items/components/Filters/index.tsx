@@ -84,7 +84,7 @@ export default function Filter() {
   };
   const onClickFilterTag = (tag: string) => {
     dispatch(filterByTag(tag));
-    //   dispatch(getItems());
+    dispatch(getItems());
   };
 
   return (

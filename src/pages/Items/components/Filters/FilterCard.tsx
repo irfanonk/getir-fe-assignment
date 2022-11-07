@@ -42,7 +42,7 @@ export default function CheckboxList({
 
   return (
     <div>
-      <Typography sx={{ mb: 1 }}>{title}</Typography>
+      <Typography sx={{ fontSize: "13px", mb: 1 }}>{title}</Typography>
       <List
         sx={{
           width: "100%",

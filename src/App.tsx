@@ -5,9 +5,32 @@ import "./App.css";
 import Items from "./pages/Items/ItemsPage";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 const theme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          color: "#fff",
+          padding: 0,
+          background: "#1EA4CE",
+        },
+        text: {
+          background: "#F2F0FD",
+          color: "#1EA4CE",
+        },
+      },
+    },
+  },
+  palette: {
+    primary: {
+      main: "#1EA4CE", // very red
+    },
+  },
   typography: {
     fontFamily: "Open-sans",
     fontSize: 14,
+    button: {
+      textTransform: "none",
+    },
   },
 });
 

@@ -1,5 +1,15 @@
 import { useState } from "react";
-import { Typography, Box, Button, styled, Stack, Grid } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Button,
+  styled,
+  Stack,
+  Grid,
+  Select,
+  MenuItem,
+  SelectChangeEvent,
+} from "@mui/material";
 
 import { getItems, selectItems } from "../../../features/items/itemSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
@@ -9,6 +19,7 @@ import {
   FilterState,
 } from "../../../features/filter/filterSlice";
 import { NumberBoxStyle } from "./Commons/NumberBox";
+import useResponsive from "../../../hooks/useResponsive";
 
 const StyledStack = styled(Stack)(({ theme }) => ({
   cursor: "pointer",
@@ -20,6 +31,8 @@ const DotBoxStyle = styled(Stack)(({ theme }) => ({
   borderRadius: "100%",
 }));
 export default function Pagination() {
+  const isDesktop = useResponsive("up", "lg");
+
   const filters = useAppSelector(selectFilters) as FilterState;
   const page = filters.page;
   const items = useAppSelector(selectItems);
@@ -36,7 +49,6 @@ export default function Pagination() {
   const dispatch = useAppDispatch();
 
   const onClickPage = (pageNumber: number) => {
-    console.log("pageNumber", pageNumber);
     dispatch(paginate(pageNumber));
     dispatch(getItems());
   };
@@ -58,8 +70,14 @@ export default function Pagination() {
     dispatch(getItems());
   };
 
+  const onChangePage = (event: SelectChangeEvent) => {
+    console.log("value", event.target.value);
+    const pageNumber = +event.target.value;
+    onClickPage(pageNumber);
+  };
+
   return (
-    <Grid container pl={3} pr={3} spacing={1}>
+    <Grid container px={isDesktop ? 3 : 0} spacing={1}>
       <Grid sx={{ display: "flex", justifyContent: "flex-start" }} item xs>
         <StyledStack
           onClick={onClickPrevPage}
@@ -68,24 +86,25 @@ export default function Pagination() {
           alignItems="center"
         >
           <Box component="img" src="/assets/icons/arrow-left.png" alt="prev" />
-          <Typography> Prev </Typography>
+          {isDesktop && <Typography>Prev</Typography>}
         </StyledStack>
       </Grid>
       <Grid item xs={8}>
-        <Stack direction="row" spacing={2}>
-          {pageNumbers.map((item) => (
-            <NumberBoxStyle
-              onClick={() => onClickPage(item)}
-              sx={{
-                background: item === page ? "#1EA4CE" : "",
-                padding: "10px 8px 8px 10px",
-              }}
-              key={item}
-            >
-              {item}
-            </NumberBoxStyle>
-          ))}
-          {/* <Stack direction="row" alignItems="center" spacing={2}>
+        {isDesktop ? (
+          <Stack direction="row" spacing={2}>
+            {pageNumbers.map((item) => (
+              <NumberBoxStyle
+                onClick={() => onClickPage(item)}
+                sx={{
+                  background: item === page ? "#1EA4CE" : "",
+                  padding: "10px 8px 8px 10px",
+                }}
+                key={item}
+              >
+                {item}
+              </NumberBoxStyle>
+            ))}
+            {/* <Stack direction="row" alignItems="center" spacing={2}>
             {page > 4 && page < totalPage - 4 ? (
               <NumberBoxStyle
                 sx={{
@@ -111,7 +130,20 @@ export default function Pagination() {
               {item}
             </NumberBoxStyle>
           ))} */}
-        </Stack>
+          </Stack>
+        ) : (
+          <Stack>
+            <Select
+              value={page.toString()}
+              label="Page"
+              onChange={onChangePage}
+            >
+              {pageNumbers.map((item) => (
+                <MenuItem value={item}>{item}</MenuItem>
+              ))}
+            </Select>
+          </Stack>
+        )}
       </Grid>
       <Grid sx={{ display: "flex", justifyContent: "flex-end" }} item xs>
         <StyledStack
@@ -120,7 +152,8 @@ export default function Pagination() {
           spacing={1}
           alignItems="center"
         >
-          <Typography>Next</Typography>
+          {isDesktop && <Typography>Next</Typography>}
+
           <Box
             width={14}
             height={14}

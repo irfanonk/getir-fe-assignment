@@ -8,7 +8,7 @@ export const fetchItems = async (filters: FilterState) => {
   const sortParams = sorting && getSortingOrder(sorting)
 
 
-  const response = await api.get(`items?_limit=${limit}&_page=${page}${brand ? `&manufacturer=${brand}` : ''}${sortParams ? sortParams : ''}${itemType ? `&itemType=${itemType}` : ''}`);
+  const response = await api.get(`items?_limit=${limit}&_page=${page}${brand ? `&manufacturer=${brand}` : ''}${tag ? `&tags_like=${tag}` : ''}${sortParams ? sortParams : ''}${itemType ? `&itemType=${itemType}` : ''}`);
 
 
   if (response.status === 200) {
