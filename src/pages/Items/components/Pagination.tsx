@@ -36,7 +36,7 @@ export default function Pagination() {
   const filters = useAppSelector(selectFilters) as FilterState;
   const page = filters.page;
   const items = useAppSelector(selectItems);
-  const totalCount = items.totalCount;
+  const totalCount = items.totalItemCount;
   const totalPage = Math.ceil(totalCount / filters.limit);
 
   console.log("page", page, totalCount, totalPage);

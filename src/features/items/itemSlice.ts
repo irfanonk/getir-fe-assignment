@@ -18,7 +18,7 @@ export interface Item {
 
 export interface ItemState {
   value: Item[] | [];
-  totalCount: number
+  totalItemCount: number
   basket: Basket;
   status: 'idle' | 'loading' | 'failed';
 }
@@ -34,7 +34,7 @@ interface BasketItem extends Item {
 
 const initialState: ItemState = {
   value: [],
-  totalCount: 0,
+  totalItemCount: 0,
   basket: {
     items: [],
     totolPrice: 0
@@ -102,7 +102,7 @@ export const itemSlice = createSlice({
       .addCase(getItems.fulfilled, (state, action) => {
         state.status = 'idle';
         state.value = action.payload.data;
-        state.totalCount = +action.payload.totalCount
+        state.totalItemCount = +action.payload.totalCount
       })
       .addCase(getItems.rejected, (state) => {
         state.status = 'failed';

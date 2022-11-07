@@ -6,6 +6,7 @@ import {
   getCompanies,
   selectComponies,
 } from "../../../../features/companies/companiesSlice";
+import { getTags, selectTags } from "../../../../features/tags/tagsSlice";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import {
   filterByBrand,
@@ -69,9 +70,11 @@ const RootBox = styled(Box)(() => ({
 export default function Filter() {
   const dispatch = useAppDispatch();
   const companies = useAppSelector(selectComponies);
+  const tags = useAppSelector(selectTags);
 
   useEffect(() => {
     dispatch(getCompanies());
+    dispatch(getTags());
   }, []);
 
   const onClickSort = (sorting: string) => {
@@ -106,7 +109,7 @@ export default function Filter() {
         title="Tags"
         search={true}
         searchText="Search tag"
-        filterData={TAGS}
+        filterData={tags.value}
       />
     </RootBox>
   );

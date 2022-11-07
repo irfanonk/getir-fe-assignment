@@ -1,20 +1,20 @@
 
 
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
 import itemSlice from '../features/items/itemSlice';
 import companiesSlice from '../features/companies/companiesSlice';
 import filterSlice from '../features/filter/filterSlice';
+import tagsSlice from '../features/tags/tagsSlice';
 
 
 
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     items: itemSlice,
     companies: companiesSlice,
-    filters: filterSlice
+    filters: filterSlice,
+    tags: tagsSlice
   },
 });
 
