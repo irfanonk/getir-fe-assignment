@@ -13,6 +13,7 @@ import { Item } from "../../../../features/items/itemSlice";
 type Props = {
   item: Item;
   onAddToBasket: (item: Item) => void;
+  index: number;
 };
 
 const ImageBoxStyle = styled("div")(({ theme }) => ({
@@ -35,7 +36,7 @@ const RootBoxStyle = styled("div")(({ theme }) => ({
   height: 227,
 }));
 
-export default function ItemCard({ item, onAddToBasket }: Props) {
+export default function ItemCard({ item, index, onAddToBasket }: Props) {
   return (
     <RootBoxStyle>
       <ImageBoxStyle>
@@ -43,7 +44,7 @@ export default function ItemCard({ item, onAddToBasket }: Props) {
           component="img"
           width={92}
           height={92}
-          src={`https://picsum.photos/id/10/200/300`}
+          src={`https://api.lorem.space/image/shoes?w=150&h=150&t=${index}`}
           alt={item?.name}
         />
       </ImageBoxStyle>

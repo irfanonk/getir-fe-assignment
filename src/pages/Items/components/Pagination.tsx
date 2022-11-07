@@ -39,12 +39,9 @@ export default function Pagination() {
   const totalCount = items.totalItemCount;
   const totalPage = Math.ceil(totalCount / filters.limit);
 
-  console.log("page", page, totalCount, totalPage);
-
   const [pageNumbers, setPageNumbers] = useState<number[]>(
     Array.from(Array(9).keys()).slice(1)
   );
-  console.log("pageNumbers", pageNumbers);
 
   const dispatch = useAppDispatch();
 
@@ -71,7 +68,6 @@ export default function Pagination() {
   };
 
   const onChangePage = (event: SelectChangeEvent) => {
-    console.log("value", event.target.value);
     const pageNumber = +event.target.value;
     onClickPage(pageNumber);
   };

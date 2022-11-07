@@ -92,7 +92,11 @@ export default function Items() {
             items.value?.map((item: Item, i: number) => {
               return (
                 <Grid key={i} item xs={12} sm={6} md={3}>
-                  <ItemCard onAddToBasket={onAddToBasket} item={item} />
+                  <ItemCard
+                    index={i + 1}
+                    onAddToBasket={onAddToBasket}
+                    item={item}
+                  />
                 </Grid>
               );
             })
