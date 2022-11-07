@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -30,7 +30,9 @@ export default function CheckboxList({
   searchText,
   onClickFilter,
 }: Props) {
-  const [checked, setChecked] = React.useState<string>("");
+  const [checked, setChecked] = useState<string>("");
+
+  const [searchedData, setSearchedData] = useState<FilterData[] | null>(null);
 
   const handleToggle = (value: string) => () => {
     if (value === checked) {
@@ -40,6 +42,14 @@ export default function CheckboxList({
       setChecked(value);
       onClickFilter(value);
     }
+  };
+
+  const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setSearchedData(
+      filterData?.filter((data) => data.name.toLowerCase().includes(value)) ||
+        null
+    );
   };
 
   return (
@@ -55,10 +65,14 @@ export default function CheckboxList({
       >
         {search && (
           <Stack px={2}>
-            <TextField placeholder={searchText} variant="outlined" />
+            <TextField
+              onChange={onChangeSearch}
+              placeholder={searchText}
+              variant="outlined"
+            />
           </Stack>
         )}
-        {filterData?.map((data) => {
+        {(searchedData || filterData)?.map((data) => {
           const { name, slug } = data;
           const labelId = `checkbox-list-label-${name}`;
 
