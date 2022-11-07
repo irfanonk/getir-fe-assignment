@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { getItems, selectItems } from "../../features/items/itemSlice";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
-import { Grid, Box, styled } from "@mui/material";
+import { Grid, Box, styled, SwipeableDrawer, Button } from "@mui/material";
 import Header from "../../layout/Header";
 import Items from "./components/Items";
 import useResponsive from "../../hooks/useResponsive";
 import Filters from "./components/Filters";
 import Basket from "./components/Basket";
+import { Stack } from "@mui/system";
 
 const RootContainerBox = styled(Box)(({}) => ({
   display: "flex",
@@ -15,6 +16,9 @@ const RootContainerBox = styled(Box)(({}) => ({
 }));
 export default function ItemsPage() {
   const isDesktop = useResponsive("up", "lg");
+
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isBasketOpen, setIsBasketOpen] = useState(false);
 
   return (
     <>
@@ -30,6 +34,22 @@ export default function ItemsPage() {
           )}
 
           <Grid item xs={isDesktop ? 6 : 12}>
+            {!isDesktop && (
+              <Stack direction="row" justifyContent="center" spacing={2} mb={5}>
+                <Button
+                  variant="contained"
+                  onClick={() => setIsFilterOpen(true)}
+                >
+                  Filters
+                </Button>{" "}
+                <Button
+                  variant="contained"
+                  onClick={() => setIsBasketOpen(true)}
+                >
+                  Basket
+                </Button>
+              </Stack>
+            )}
             <Items />
           </Grid>
           {isDesktop && (
@@ -39,6 +59,30 @@ export default function ItemsPage() {
             </Grid>
           )}
         </Grid>
+        {!isDesktop && (
+          <SwipeableDrawer
+            anchor={"left"}
+            open={isFilterOpen}
+            onClose={() => setIsFilterOpen(false)}
+            onOpen={() => setIsFilterOpen(true)}
+          >
+            <Stack p={2}>
+              <Filters />
+            </Stack>
+          </SwipeableDrawer>
+        )}
+        {!isDesktop && (
+          <SwipeableDrawer
+            anchor={"right"}
+            open={isBasketOpen}
+            onClose={() => setIsBasketOpen(false)}
+            onOpen={() => setIsBasketOpen(true)}
+          >
+            <Stack>
+              <Basket />
+            </Stack>
+          </SwipeableDrawer>
+        )}
       </RootContainerBox>
     </>
   );
