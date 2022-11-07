@@ -136,7 +136,9 @@ export default function Pagination() {
               onChange={onChangePage}
             >
               {pageNumbers.map((item) => (
-                <MenuItem value={item}>{item}</MenuItem>
+                <MenuItem key={item} value={item}>
+                  {item}
+                </MenuItem>
               ))}
             </Select>
           </Stack>
