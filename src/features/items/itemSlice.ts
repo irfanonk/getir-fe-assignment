@@ -103,6 +103,17 @@ export const itemSlice = createSlice({
         state.status = 'idle';
         state.value = action.payload.data;
         state.totalItemCount = +action.payload.totalCount
+
+        const currentBasket = state.basket
+        if (currentBasket.totolPrice === 0) {
+          const items: BasketItem[] = currentBasket.items
+          const initialItem = { ...action.payload.data[0], quantity: 1 }
+          items?.push(initialItem)
+          currentBasket.totolPrice += initialItem.price
+          currentBasket.totolPrice = +currentBasket.totolPrice.toFixed(2)
+          state.basket = currentBasket;
+        }
+
       })
       .addCase(getItems.rejected, (state) => {
         state.status = 'failed';
