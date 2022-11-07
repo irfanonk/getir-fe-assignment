@@ -5,6 +5,6 @@ export const NumberBoxStyle = styled(Box)(({}) => ({
   justifyContent: "center",
   alignItems: "center",
   width: "100%",
-
+  color: "#fff",
   cursor: "pointer",
 }));

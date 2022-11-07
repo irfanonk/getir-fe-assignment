@@ -94,6 +94,7 @@ export default function Pagination() {
                 onClick={() => onClickPage(item)}
                 sx={{
                   background: item === page ? "#1EA4CE" : "",
+                  color: item === page ? "#fff" : "#000",
                   padding: "10px 8px 8px 10px",
                 }}
                 key={item}
