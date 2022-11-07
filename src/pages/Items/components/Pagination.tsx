@@ -51,6 +51,7 @@ export default function Pagination() {
   };
 
   const onClickNextPage = () => {
+    if (page === totalPage) return;
     if (pageNumbers[pageNumbers.length - 1] + 1 < totalPage) {
       setPageNumbers(pageNumbers.map((x) => x + 1));
     }
