@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { getItems, selectItems } from "../../features/items/itemSlice";
-import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+import {  useState } from "react";
+
+
 import { Grid, Box, styled, SwipeableDrawer, Button } from "@mui/material";
 import Header from "../../layout/Header";
 import Items from "./components/Items";

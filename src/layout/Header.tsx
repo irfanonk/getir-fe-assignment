@@ -5,9 +5,6 @@ import {
   Stack,
   AppBar,
   Toolbar,
-  Typography,
-  IconButton,
-  Button,
 } from "@mui/material";
 
 import Price from "../pages/Items/components/Price";

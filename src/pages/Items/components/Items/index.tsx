@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   Grid,
   CircularProgress,
@@ -16,10 +16,10 @@ import {
 
 import { styled } from "@mui/material/styles";
 import ItemCard from "./ItemCard";
-import { useTheme } from "@mui/material/styles";
+
 import Pagination from "../Pagination";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
-import PageLoading from "../../../../components/PageLoading";
+
 import {
   filterByItemType,
   FilterState,

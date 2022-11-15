@@ -1,6 +1,6 @@
 
-import companiesReducer, { getCompanies, CompanyState } from './companiesSlice';
-import { AsyncThunkAction } from '@reduxjs/toolkit';
+import companiesReducer, {  CompanyState } from './companiesSlice';
+
 
 
 

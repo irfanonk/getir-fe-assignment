@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { Box, Stack, styled } from "@mui/material";
+import { Box,  styled } from "@mui/material";
 import FilterCard from "./FilterCard";
 import {
   getCompanies,

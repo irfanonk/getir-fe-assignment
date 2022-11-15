@@ -1,7 +1,7 @@
 
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import Items from '../../pages/Items/ItemsPage';
-import { RootState, AppThunk } from '../../redux/store';
+
+import { RootState } from '../../redux/store';
 import { fetchItems } from './itemsAPI';
 
 

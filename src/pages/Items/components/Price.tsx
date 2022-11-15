@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack, Typography, SxProps } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 
 type Props = {
   price: number | string | undefined;

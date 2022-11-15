@@ -5,7 +5,6 @@ import {
   styled,
   CardActions,
   CardContent,
-  Card,
 } from "@mui/material";
 import Price from "../Price";
 import { Item } from "../../../../features/items/itemSlice";

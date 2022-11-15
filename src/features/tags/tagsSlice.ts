@@ -1,6 +1,6 @@
 
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../redux/store';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../../redux/store';
 import { fetchTags } from './tagsAPI';
 
 export interface Tag {
