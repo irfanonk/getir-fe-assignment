@@ -61,7 +61,7 @@ export const itemSlice = createSlice({
   initialState,
   reducers: {
     addToBasket: (state, action: PayloadAction<Item>) => {
-      const currentBasket = state.basket
+      const currentBasket = { ...state.basket }
       const items = currentBasket.items
       const item = items?.find(
         (basketItem) => basketItem.name === action.payload.name,
@@ -77,7 +77,8 @@ export const itemSlice = createSlice({
       state.basket = currentBasket;
     },
     removeFromBasket: (state, action: PayloadAction<Item>) => {
-      const currentBasket = state.basket
+      const currentBasket = { ...state.basket }
+
       const items = currentBasket.items
       const item = items?.find(
         (basketItem) => basketItem.name === action.payload.name
@@ -104,7 +105,8 @@ export const itemSlice = createSlice({
         state.value = action.payload.data;
         state.totalItemCount = +action.payload.totalCount
 
-        const currentBasket = state.basket
+        const currentBasket = { ...state.basket }
+
         if (currentBasket.totolPrice === 0) {
           const items: BasketItem[] = currentBasket.items
           const initialItem = { ...action.payload.data[0], quantity: 1 }
