@@ -21,6 +21,7 @@ import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { NumberBoxStyle } from "../Commons/NumberBox";
 import Price from "../Price";
 import { Item } from "../../../../features/items/itemSlice";
+import React from "react";
 
 const RootBoxStyle = styled(Box)(() => ({
   border: "5px solid #1EA4CE",
@@ -60,7 +61,7 @@ export default function Basket() {
       <List sx={{ width: "100%" }}>
         {basket.items.map((item) => {
           return (
-            <>
+            <React.Fragment key={item.name}>
               <ListItem
                 secondaryAction={
                   <ItemCountBoxStyle>
@@ -109,7 +110,7 @@ export default function Basket() {
                 />
               </ListItem>
               <Divider component="li" />
-            </>
+            </React.Fragment>
           );
         })}
       </List>
