@@ -1,6 +1,4 @@
-import {  useState } from "react";
-
-
+import { useState } from "react";
 import { Box, Button, Grid, SwipeableDrawer, styled } from "@mui/material";
 import Header from "../../layout/Header";
 import Items from "./components/Items";
@@ -9,7 +7,7 @@ import Filters from "./components/Filters";
 import Basket from "./components/Basket";
 import { Stack } from "@mui/system";
 
-const RootContainerBox = styled(Box)(({}) => ({
+const RootContainerBox = styled(Box)(() => ({
   display: "flex",
   justifyContent: "center",
   padding: "80px 0 80px 0",
