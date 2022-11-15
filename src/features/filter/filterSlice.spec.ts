@@ -1,5 +1,5 @@
 
-import filterReducer, { filterByItemType, filterByBrand, filterByTag, sort, paginate, FilterState } from './filterSlice';
+import filterReducer, { FilterState, filterByBrand, filterByItemType, filterByTag, paginate, sort } from './filterSlice';
 
 
 describe('filter reducer', () => {

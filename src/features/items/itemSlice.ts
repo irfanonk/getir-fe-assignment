@@ -1,5 +1,5 @@
 
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { RootState } from '../../redux/store';
 import { fetchItems } from './itemsAPI';
@@ -61,8 +61,8 @@ export const itemSlice = createSlice({
   initialState,
   reducers: {
     addToBasket: (state, action: PayloadAction<Item>) => {
-      const currentBasket = state.basket
-      const items = currentBasket.items
+      let currentBasket = state.basket
+      let items = currentBasket.items
       const item = items?.find(
         (basketItem) => basketItem.name === action.payload.name,
       ) as BasketItem;
@@ -77,8 +77,8 @@ export const itemSlice = createSlice({
       state.basket = currentBasket;
     },
     removeFromBasket: (state, action: PayloadAction<Item>) => {
-      const currentBasket = state.basket
-      const items = currentBasket.items
+      let currentBasket = state.basket
+      let items = currentBasket.items
       const item = items?.find(
         (basketItem) => basketItem.name === action.payload.name
       ) as BasketItem
@@ -104,7 +104,7 @@ export const itemSlice = createSlice({
         state.value = action.payload.data;
         state.totalItemCount = +action.payload.totalCount
 
-        const currentBasket = state.basket
+        let currentBasket = state.basket
         if (currentBasket.totolPrice === 0) {
           const items: BasketItem[] = currentBasket.items
           const initialItem = { ...action.payload.data[0], quantity: 1 }

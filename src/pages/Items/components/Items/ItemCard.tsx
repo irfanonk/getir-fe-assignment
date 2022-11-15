@@ -1,10 +1,10 @@
 import {
-  Typography,
   Box,
   Button,
-  styled,
   CardActions,
   CardContent,
+  Typography,
+  styled,
 } from "@mui/material";
 import Price from "../Price";
 import { Item } from "../../../../features/items/itemSlice";

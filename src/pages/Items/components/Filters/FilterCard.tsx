@@ -5,7 +5,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
-import { Typography, TextField, Stack, Box } from "@mui/material";
+import { Box, Stack, TextField, Typography } from "@mui/material";
 import { Company } from "../../../../features/companies/companiesSlice";
 import CircleChecked from "@mui/icons-material/CheckCircleOutline";
 import CircleUnchecked from "@mui/icons-material/RadioButtonUnchecked";

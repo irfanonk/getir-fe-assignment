@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { Box,  styled } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import FilterCard from "./FilterCard";
 import {
   getCompanies,
@@ -31,32 +31,6 @@ const SORTING = [
   {
     name: "Old to new",
     slug: "otn",
-  },
-];
-const TAGS = [
-  {
-    name: "Beach",
-    slug: "Beach",
-  },
-  {
-    name: "Ocean",
-    slug: "Ocean",
-  },
-  {
-    name: "Water",
-    slug: "Water",
-  },
-  {
-    name: "Animal",
-    slug: "Animal",
-  },
-  {
-    name: "Road",
-    slug: "Road",
-  },
-  {
-    name: "Rocks",
-    slug: "Rocks",
   },
 ];
 

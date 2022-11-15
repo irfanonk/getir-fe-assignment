@@ -1,12 +1,12 @@
 import {
-  Typography,
   Box,
-  styled,
+  Divider,
+  IconButton,
   List,
   ListItem,
   ListItemText,
-  Divider,
-  IconButton,
+  Typography,
+  styled,
 } from "@mui/material";
 import {
   addToBasket,

@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 import {
-  Grid,
-  CircularProgress,
-  Typography,
-  Stack,
   Button,
+  CircularProgress,
+  Grid,
+  Stack,
+  Typography,
 } from "@mui/material";
 import {
-  addToBasket,
-  getItems,
   Item,
   ItemState,
+  addToBasket,
+  getItems,
   selectItems,
 } from "../../../../features/items/itemSlice";
 
@@ -21,8 +21,8 @@ import Pagination from "../Pagination";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 
 import {
-  filterByItemType,
   FilterState,
+  filterByItemType,
   selectFilters,
 } from "../../../../features/filter/filterSlice";
 import useResponsive from "../../../../hooks/useResponsive";

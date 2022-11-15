@@ -1,34 +1,27 @@
 import { useState } from "react";
 import {
-  Typography,
   Box,
-  
-  styled,
-  Stack,
   Grid,
-  Select,
   MenuItem,
+  Select,
   SelectChangeEvent,
+  Stack,
+  Typography,
+  styled,
 } from "@mui/material";
 
 import { getItems, selectItems } from "../../../features/items/itemSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
-  selectFilters,
-  paginate,
   FilterState,
+  paginate,
+  selectFilters,
 } from "../../../features/filter/filterSlice";
 import { NumberBoxStyle } from "./Commons/NumberBox";
 import useResponsive from "../../../hooks/useResponsive";
 
 const StyledStack = styled(Stack)(({ theme }) => ({
   cursor: "pointer",
-}));
-const DotBoxStyle = styled(Stack)(({ theme }) => ({
-  width: 3,
-  height: 3,
-  background: "#000",
-  borderRadius: "100%",
 }));
 export default function Pagination() {
   const isDesktop = useResponsive("up", "lg");

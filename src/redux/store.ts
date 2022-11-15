@@ -1,6 +1,6 @@
 
 
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { Action, ThunkAction, configureStore } from '@reduxjs/toolkit';
 import itemSlice from '../features/items/itemSlice';
 import companiesSlice from '../features/companies/companiesSlice';
 import filterSlice from '../features/filter/filterSlice';
