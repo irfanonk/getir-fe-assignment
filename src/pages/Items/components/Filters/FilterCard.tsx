@@ -23,7 +23,7 @@ type FilterData = {
   slug: string;
 };
 
-export default function CheckboxList({
+export default function FilterCard({
   filterData,
   title,
   search,
