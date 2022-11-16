@@ -67,7 +67,7 @@ export default function Pagination() {
   };
 
   return (
-    <Grid container px={isDesktop ? 3 : 0} spacing={1}>
+    <Grid container spacing={1}>
       <Grid sx={{ display: "flex", justifyContent: "flex-start" }} item xs>
         <StyledStack
           onClick={onClickPrevPage}
@@ -95,38 +95,13 @@ export default function Pagination() {
                 {item}
               </NumberBoxStyle>
             ))}
-            {/* <Stack direction="row" alignItems="center" spacing={2}>
-            {page > 4 && page < totalPage - 4 ? (
-              <NumberBoxStyle
-                sx={{
-                  background: "#1EA4CE",
-                  padding: "10px 8px 8px 10px",
-                }}
-              >
-                {page}
-              </NumberBoxStyle>
-            ) : (
-              [1, 2, 3].map((x) => <DotBoxStyle key={x} />)
-            )}
-          </Stack>
-          {pageNumbers.slice(-4).map((item) => (
-            <NumberBoxStyle
-              onClick={() => onClickPage(item)}
-              sx={{
-                background: item === page ? "#1EA4CE" : "",
-                padding: "10px 8px 8px 10px",
-              }}
-              key={item}
-            >
-              {item}
-            </NumberBoxStyle>
-          ))} */}
           </Stack>
         ) : (
           <Stack>
             <Select
               value={page.toString()}
               label="Page"
+              name="Page"
               onChange={onChangePage}
             >
               {pageNumbers.map((item) => (

@@ -60,7 +60,7 @@ export default function Items() {
   };
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} px={3}>
       <Stack>
         <Typography>Products</Typography>
       </Stack>
@@ -87,7 +87,7 @@ export default function Items() {
           container
           minHeight={"100vh"}
           alignItems="center"
-          spacing={4}
+          spacing={isDesktop ? 4 : 10}
           justifyContent="center"
         >
           {items.status === "loading" ? (
