@@ -36,6 +36,7 @@ https://e-commerce-jsondb.vercel.app
    - could search in filters
    - could add any item to the basket
    - could increment, decrement item count in basket.
+   - could fetch different items with pagination
 
 ## Available Scripts
 
