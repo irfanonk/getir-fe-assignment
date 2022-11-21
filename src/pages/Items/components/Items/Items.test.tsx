@@ -1,7 +1,7 @@
 import React from "react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import {  screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 // We're using our own custom render function and not RTL's render.
 
 import Items from "./index";
@@ -9,38 +9,35 @@ import { renderWithProviders } from "../../../../utils/test-utils";
 
 // We use msw to intercept the network request during the test,
 export const handlers = [
-  rest.get(
-    "https://getir-fe-assignment-db.vercel.app/items",
-    (req, res, ctx) => {
-      return res(
-        ctx.json([
-          {
-            tags: ["Trees"],
-            price: 10.99,
-            name: "Handcrafted Trees Shirt",
-            description:
-              "enim corporis voluptatibus laudantium possimus alias dolorem voluptatem similique aut aliquam voluptatem voluptatem omnis id consequatur",
-            slug: "Handcrafted-Trees-Shirt",
-            added: 1485723766805,
-            manufacturer: "OHara-Group",
-            itemType: "shirt",
-          },
-          {
-            tags: ["Beach", "Ocean", "Water"],
-            price: 19.99,
-            name: "Rustic Beach Mug",
-            description:
-              "totam at veritatis eligendi assumenda ex quia praesentium quibusdam ducimus",
-            slug: "Rustic-Beach-Mug",
-            added: 1481573896833,
-            manufacturer: "Sipes-Inc",
-            itemType: "mug",
-          },
-        ]),
-        ctx.delay(250)
-      );
-    }
-  ),
+  rest.get("https://e-commerce-jsondb.vercel.app/items", (req, res, ctx) => {
+    return res(
+      ctx.json([
+        {
+          tags: ["Trees"],
+          price: 10.99,
+          name: "Handcrafted Trees Shirt",
+          description:
+            "enim corporis voluptatibus laudantium possimus alias dolorem voluptatem similique aut aliquam voluptatem voluptatem omnis id consequatur",
+          slug: "Handcrafted-Trees-Shirt",
+          added: 1485723766805,
+          manufacturer: "OHara-Group",
+          itemType: "shirt",
+        },
+        {
+          tags: ["Beach", "Ocean", "Water"],
+          price: 19.99,
+          name: "Rustic Beach Mug",
+          description:
+            "totam at veritatis eligendi assumenda ex quia praesentium quibusdam ducimus",
+          slug: "Rustic-Beach-Mug",
+          added: 1481573896833,
+          manufacturer: "Sipes-Inc",
+          itemType: "mug",
+        },
+      ]),
+      ctx.delay(250)
+    );
+  }),
 ];
 
 const server = setupServer(...handlers);
