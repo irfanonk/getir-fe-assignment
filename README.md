@@ -1,13 +1,20 @@
 # E-Commerce Template App
 
-This app includes: - React - Redux Toolkit - TypeScript - Json Web Server - Test Jest - Mock Server
+Tech Stack:
 
-## Details
+- React
+- Redux Toolkit
+- TypeScript
+- Json Web Server
+- Test Jest
+- Mock Server
 
-Visit App at :
+## Visit
+
+App at :
 https://react-redux-ts-jest-jsondb-dev.vercel.app
 
-Visit Db at:
+Db at:
 https://e-commerce-jsondb.vercel.app
 
 ## Features
@@ -27,6 +34,8 @@ https://e-commerce-jsondb.vercel.app
 5. User
    - could display items by price, date, brand, tag and type
    - could search in filters
+   - could add any item to the basket
+   - could increment, decrement item count in basket.
 
 ## Available Scripts
 
