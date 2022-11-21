@@ -2,6 +2,32 @@
 
 This app includes: - React - Redux Toolkit - TypeScript - Json Web Server - Test Jest - Mock Server
 
+## Details
+
+Visit App at :
+https://react-redux-ts-jest-jsondb-dev.vercel.app
+
+Visit Db at:
+https://e-commerce-jsondb.vercel.app
+
+## Features
+
+1. Fetching items from json web server deployed to vercel with NodeJs
+2. Custom routes for fetching data
+3. Type safety with TypeScript
+4. Maneging global state with Redux Toolkit.
+
+   - All items
+   - Sorting
+   - Brand filter
+   - Tag filter
+   - Type filter
+   - Basket items, ( prices and count) and total price
+
+5. User
+   - could display items by price, date, brand, tag and type
+   - could search in filters
+
 ## Available Scripts
 
 ### `npm start`
